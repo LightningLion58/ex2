@@ -89,16 +89,17 @@ int main() {
                     copy /= 10;
                     digits++;
                 }
+                //Go through all the digits in num:
                 int sumLeft = 0, sumRight = 0;
                 for(int i = 1; i <= digits; i++) {
                     if(digits % 2 == 1 && i == (digits/2)+1) {
                         num /= 10; //Skip the number that is in the middle (get rid of it).
                         i++;
                     }
-                    if(i <= digits/2) {
-                        sumRight += num % 10;
-                    } else {
-                        sumLeft += num % 10;
+                    if(i <= digits/2) { //If the digits are to the right of the number:
+                        sumRight += num % 10; //Add them to the right sum.
+                    } else { //If the digits are to the left of the number:
+                        sumLeft += num % 10;  //Add them to the left sum.
                     }
                     num /= 10;
                 }
@@ -112,6 +113,7 @@ int main() {
              *  Case 3: determine whether the sum of the proper divisors (od an integer) is greater than the number itself
              */
             case 3:
+                //Scan for input until it is valid: (Print an error message if not)
                 printf("Enter a number:\n");
                 while (1) {
                     scanf("%d", &num);
@@ -120,16 +122,32 @@ int main() {
                     }
                     printf("Only positive number is allowed, please try again:\n");
                 }
+                //Go through all the possible dividers (from 2 to num/2) and sum them up if they are proper dividers.
                 int sumOfDividers = 0;
                 for(int i = 2; i <= num/2; i++) {
-                    if(num % i == 0) {
-                        sumOfDividers += i;
+                    if(num % i == 0) { //If `i` is a proper divider:
+                        sumOfDividers += i; //Add `i` to the sum.
                     }
                 }
+                /*A number is generous if the sum of all its
+                 proper dividers is bigger than itself: */
                 if(sumOfDividers > num) {
                     printf("This number is generous!\n");
                 } else {
                     printf("This number does not share.\n");
+                }
+                break;
+            /* 4. Circle Of Joy
+             * Case 4: determine whether a number is a prime.
+             */
+            case 4:
+                printf("Enter a number:\n");
+                while (1) {
+                    scanf("%d", &num);
+                    if (num > 0) { //If the input is valid, break the loop
+                        break;
+                    }
+                    printf("Only positive number is allowed, please try again:\n");
                 }
                 break;
             /* 7. Exit
@@ -150,7 +168,6 @@ int main() {
     Please notice: the number has to be bigger than 0.
     */
 
-    // Case 4: determine wether a number is a prime.
     /* Examples:
     This one brings joy: 3, 5, 11
     This one does not bring joy: 15, 8, 99
