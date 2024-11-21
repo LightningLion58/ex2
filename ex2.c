@@ -23,6 +23,9 @@ int main() {
         printf("\t7. Exit\n");
         scanf("%d", &option); //Get input from the user. (an integer representing the option the user chose)
 
+        //`num` - Since multiple cases require the user to enter a number, I defined the variable outside the scope.
+        int num;
+
         //Go through all the possible options for `option:`
         switch (option) {
             /* 1. Happy Face
@@ -71,7 +74,6 @@ int main() {
              * and the sum of all digits to the right of the middle digit(s) are equal
              */
             case 2:
-                int num;
                 printf("Enter a number: \n");
                 //Scan for input until it is valid: (Print an error message if not)
                 while (1) {
@@ -106,6 +108,30 @@ int main() {
                     printf("This number isn't balanced and destroys harmony.\n");
                 }
                 break;
+            /* 3. Generous Number:
+             *  Case 3: determine whether the sum of the proper divisors (od an integer) is greater than the number itself
+             */
+            case 3:
+                printf("Enter a number:\n");
+                while (1) {
+                    scanf("%d", &num);
+                    if (num > 0) { //If the input is valid, break the loop
+                        break;
+                    }
+                    printf("Only positive number is allowed, please try again:\n");
+                }
+                int sumOfDividers = 0;
+                for(int i = 2; i <= num/2; i++) {
+                    if(num % i == 0) {
+                        sumOfDividers += i;
+                    }
+                }
+                if(sumOfDividers > num) {
+                    printf("This number is generous!\n");
+                } else {
+                    printf("This number does not share.\n");
+                }
+                break;
             /* 7. Exit
              * Case 7: End the program.
              */
@@ -118,7 +144,6 @@ int main() {
         }
     } while (option != 7); //Repeat everything unless the user chose 7.
 
-    // Case 3: determine whether the sum of the proper divisors (od an integer) is greater than the number itself
     /* Examples:
     Abudant: 12, 20, 24
     Not Abudant: 3, 7, 10
