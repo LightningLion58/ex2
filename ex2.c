@@ -141,6 +141,7 @@ int main() {
              * Case 4: determine whether a number is a prime.
              */
             case 4:
+                //Scan for input until it is valid: (Print an error message if not)
                 printf("Enter a number:\n");
                 while (1) {
                     scanf("%d", &num);
@@ -149,6 +150,64 @@ int main() {
                     }
                     printf("Only positive number is allowed, please try again:\n");
                 }
+                //Count the digits in `num`:
+                int numCopy = num, digitCount = 0;
+                while (numCopy != 0) {
+                    numCopy /= 10;
+                    digitCount++;
+                }
+                /*Reverse num by multiplying each digit by (digitCount-i) powers of 10.
+                (e.g. for number 1234, we get: 4 * 1000 + 3 * 100 + 2 * 10 + 1)*/
+                numCopy = num; //We need a copy so that we don't lose the original number.
+                int reversedNum = 0;
+                //For every digit:
+                for(int i = 1; i <= digitCount; i++) {
+                    //Calculate 10 to the power of digitCount-i:
+                    int tenPower = 1;
+                    for (int power = 0; power < digitCount-i; power++) {
+                        tenPower *= 10;
+                    }
+                    /*For every digit:
+                     * Multiply the rightest digit by 10 to the according power,
+                     * and add it to reversedNum:
+                     */
+                    reversedNum += (numCopy%10) * tenPower;
+                    numCopy/=10; //Get rid of the rightest digit.
+                }
+                //First assume they are both primes,
+                int areBothPrimes = 1;
+                if(num == 1) {
+                    /*If the original number is one then we know they are not primes
+                      (This is an edge case) */
+                    areBothPrimes = 0;
+                } else {
+                    //Loop through all the possible dividers and find out if `num` or `reversedNum` aren't primes.
+                    for(int i = 2; i <= reversedNum/2; i++) {
+                        if(reversedNum % i == 0) {
+                            areBothPrimes = 0;
+                            break;
+                        }
+                        //In order to not loop twice, I just checked if `num` is prime in the same loop:
+                        if(i <= num/2) {
+                            if(num % i == 0) {
+                                areBothPrimes = 0;
+                                break;
+                            }
+                        }
+
+                    }
+                }
+                if(areBothPrimes) {
+                    printf("This number completes the circle of joy!\n");
+                } else {
+                    printf("The circle remains incomplete.\n");
+                }
+                break;
+            /* 5. Happy Numbers
+             * Happy numbers: Print all the happy numbers between 1 to the given number.
+             * Happy number is a number which eventually reaches 1 when replaced by the sum of the square of each digit
+             */
+            case 5:
                 break;
             /* 7. Exit
              * Case 7: End the program.
@@ -162,21 +221,7 @@ int main() {
         }
     } while (option != 7); //Repeat everything unless the user chose 7.
 
-    /* Examples:
-    Abudant: 12, 20, 24
-    Not Abudant: 3, 7, 10
-    Please notice: the number has to be bigger than 0.
-    */
 
-    /* Examples:
-    This one brings joy: 3, 5, 11
-    This one does not bring joy: 15, 8, 99
-    Please notice: the number has to be bigger than 0.
-    */
-
-
-    // Happy numbers: Print all the happy numbers between 1 to the given number.
-    // Happy number is a number which eventually reaches 1 when replaced by the sum of the square of each digit
     /* Examples:
     Happy :) : 7, 10
     Not Happy :( : 5, 9
