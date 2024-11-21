@@ -221,7 +221,6 @@ int main() {
         }
     } while (option != 7); //Repeat everything unless the user chose 7.
 
-    //Test
     /* Examples:
     Happy :) : 7, 10
     Not Happy :( : 5, 9
