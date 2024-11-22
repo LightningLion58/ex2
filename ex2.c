@@ -185,14 +185,12 @@ int main() {
                             areBothPrimes = 0;
                             break;
                         }
-                        //In order to not loop twice, I just checked if `num` is prime in the same loop:
-                        if(i <= num/2) {
-                            if(num % i == 0) {
-                                areBothPrimes = 0;
-                                break;
-                            }
+                    }
+                    for(int i = 2; i <= num/2; i++) {
+                        if(num % i == 0) {
+                            areBothPrimes = 0;
+                            break;
                         }
-
                     }
                 }
                 if(areBothPrimes) {
