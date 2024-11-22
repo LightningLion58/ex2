@@ -289,7 +289,7 @@ int main() {
              * Case 7: End the program.
              */
             case 7: //If the user picked 7 (Exit), that is the only option left:
-                printf("Thank you for your journey through Numeria!");
+                printf("Thank you for your journey through Numeria!\n");
                 break;
             //If the switch enters the default case, it means the input given from the user is not valid.
             default:
