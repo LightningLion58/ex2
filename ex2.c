@@ -6,16 +6,6 @@ Assignment: ex2
 
 #include <stdio.h>
 
-void showBuffer() {
- static int count = 0;
- char* p = stdin->_IO_read_ptr;
- char* end = stdin->_IO_read_end;
- printf("Call %d: |", count++);
- while (p != end) {
- putchar(*p++);
- }
- printf("|\n");
-}
 
 
 int main() {
@@ -263,12 +253,10 @@ int main() {
             // and replace with "Cheer!" every number that divided by the given cheer number
             // and replace with "Festival!" every number that divided by both of them
             case 6:
+                char unused;
                 int smile, cheer;
                 printf("Enter a smile and cheer number:\n");
-                scanf(" %[^0-9]");
-                scanf("%d", &smile);
-                scanf(" %[^0-9]");
-                scanf("%d", &cheer);
+                scanf(" %[^0-9]%d%[^0-9]%d", &unused,&smile, &cheer);
                 printf("The smile is %d.\n", smile);
                 printf("The cheer is %d.\n", cheer);
                 return 0;
