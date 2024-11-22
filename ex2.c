@@ -261,6 +261,8 @@ int main() {
                     }
                     printf("Only 2 different positive numbers in the given format are allowed for the festival, please try again:\n");
                 } while(1);
+
+
                 int maxNum;
                 printf("Enter maximum number for the festival: \n");
                 while (1) {
@@ -270,12 +272,16 @@ int main() {
                     }
                     printf("Only positive maximum number is allowed, please try again:\n");
                 }
+                //Iterate through all the numbers from 1 to `maxNum`:
                 for(int i = 1; i <= maxNum; i++) {
+                    //If they both divide the number, print Festival! (per requested in the exercise):
                     if((i % smileNumber == 0) && (i % cheerNumber == 0)) {
                         printf("Festival!\n");
                     } else if(i % smileNumber == 0) {
+                        //If only `smileNumber` divides the number, print Smile! (per requested in the exercise):
                         printf("Smile!\n");
                     } else if(i % cheerNumber == 0) {
+                        //If only `cheerNumber` divides the number, print Cheer! (per requested in the exercise):
                         printf("Cheer!\n");
                     } else {
                         printf("%d\n", i);
@@ -293,9 +299,6 @@ int main() {
                 printf("This option is not available, please try again.\n");
         }
     } while (option != 7); //Repeat everything unless the user chose 7.
-    /* Example:
-    6, smile: 2, cheer: 3 : 1, Smile!, Cheer!, Smile!, 5, Festival!
-    */
 
     return 0;
 }
