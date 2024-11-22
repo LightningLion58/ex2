@@ -6,8 +6,6 @@ Assignment: ex2
 
 #include <stdio.h>
 
-
-
 int main() {
     //Menu:
 
@@ -253,13 +251,36 @@ int main() {
             // and replace with "Cheer!" every number that divided by the given cheer number
             // and replace with "Festival!" every number that divided by both of them
             case 6:
-                char unused;
-                int smile, cheer;
-                printf("Enter a smile and cheer number:\n");
-                scanf(" %[^0-9]%d%[^0-9]%d", &unused,&smile, &cheer);
-                printf("The smile is %d.\n", smile);
-                printf("The cheer is %d.\n", cheer);
-                return 0;
+                int smileNumber  = 0, cheerNumber  = 0;
+                do {
+                    printf("Enter a smile and cheer number:\n");
+                    scanf(" smile:%d, cheer:%d", &smileNumber, &cheerNumber);
+                    scanf("%*[^\n]"); //Clear the buffer.
+                    if(smileNumber != cheerNumber && smileNumber > 0 && cheerNumber > 0) {
+                        break;
+                    }
+                    printf("Only 2 different positive numbers in the given format are allowed for the festival, please try again:\n");
+                } while(1);
+                int maxNum;
+                printf("Enter maximum number for the festival: \n");
+                while (1) {
+                    scanf("%d", &maxNum);
+                    if (maxNum > 0) { //If the input is valid, break the loop
+                        break;
+                    }
+                    printf("Only positive maximum number is allowed, please try again:\n");
+                }
+                for(int i = 1; i <= maxNum; i++) {
+                    if((i % smileNumber == 0) && (i % cheerNumber == 0)) {
+                        printf("Festival!\n");
+                    } else if(i % smileNumber == 0) {
+                        printf("Smile!\n");
+                    } else if(i % cheerNumber == 0) {
+                        printf("Cheer!\n");
+                    } else {
+                        printf("%d\n", i);
+                    }
+                }
                 break;
             /* 7. Exit
              * Case 7: End the program.
