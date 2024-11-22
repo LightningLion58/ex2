@@ -193,6 +193,7 @@ int main() {
                         }
                     }
                 }
+                //Final prints:
                 if(areBothPrimes) {
                     printf("This number completes the circle of joy!\n");
                 } else {
