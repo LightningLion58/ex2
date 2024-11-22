@@ -35,7 +35,7 @@ int main() {
                 //Ask the user to enter 3 characters (non-empty/space characters)
                 printf("Enter symbols for the eyes, nose, and mouth:\n");
                 scanf(" %c %c %c", &eyesChar, &noseChar, &mouthChar);
-                printf("Enter face size:");
+                printf("Enter face size:\n");
                 //Scan for input (face size) until the input is valid: (Print an error message if not)
                 while (1) {
                     scanf("%d", &faceSize);
@@ -249,8 +249,8 @@ int main() {
             // and replace with "Festival!" every number that divided by both of them
             case 6:
                 int smileNumber  = 0, cheerNumber  = 0;
+                printf("Enter a smile and cheer number:\n");
                 do {
-                    printf("Enter a smile and cheer number:\n");
                     scanf(" smile:%d, cheer:%d", &smileNumber, &cheerNumber);
                     scanf("%*[^\n]"); //Clear the buffer.
                     if(smileNumber != cheerNumber && smileNumber > 0 && cheerNumber > 0) {
