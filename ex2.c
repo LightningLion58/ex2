@@ -297,6 +297,5 @@ int main() {
                 printf("This option is not available, please try again.\n");
         }
     } while (option != 7); //Repeat everything unless the user chose 7.
-
     return 0;
 }
