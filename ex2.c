@@ -7,8 +7,6 @@ Assignment: ex2
 #include <stdio.h>
 
 int main() {
-    //Menu:
-
     //`option` - Will store the option that the user selected from the menu.
     int option;
     do {
