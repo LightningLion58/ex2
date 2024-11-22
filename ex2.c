@@ -6,6 +6,18 @@ Assignment: ex2
 
 #include <stdio.h>
 
+void showBuffer() {
+ static int count = 0;
+ char* p = stdin->_IO_read_ptr;
+ char* end = stdin->_IO_read_end;
+ printf("Call %d: |", count++);
+ while (p != end) {
+ putchar(*p++);
+ }
+ printf("|\n");
+}
+
+
 int main() {
     //Menu:
 
@@ -208,6 +220,58 @@ int main() {
              * Happy number is a number which eventually reaches 1 when replaced by the sum of the square of each digit
              */
             case 5:
+                //Scan for input until it is valid: (Print an error message if not)
+                printf("Enter a number:\n");
+                while (1) {
+                    scanf("%d", &num);
+                    if (num > 0) { //If the input is valid, break the loop
+                        break;
+                    }
+                    printf("Only positive number is allowed, please try again:\n");
+                }
+                //1 is a happy number (by definition):
+                printf("Between 1 and %d only these numbers bring happiness: 1", num);
+                for(int i = 7; i <= num; i++) { //From 7 to num (since 2 to 6 aren't happy numbers:)
+                    int temp = i; //Create a temporary variable so that we don't lose the original value of `i`.
+                    int sum = 0; //This will store the sum of digits squared.
+
+                    /* While the sum isn't equal to 1 or 4:
+                     * (If it is equal to 1, it is a happy number,
+                     * otherwise if it's 4, it will enter an endless cycle,
+                     * meaning it isn't a happy number)
+                     */
+                    while(sum != 1 && sum != 4) {
+                        sum = 0;
+                        do {
+                            //Sum the digits squared:
+                            int digit = temp % 10;
+                            sum += digit*digit;
+                            temp /= 10;
+                        }while(temp); //While temp isn't 0.
+                        //Our new number to sum the digits squared is the sum of the previous number:
+                        temp = sum;
+                    }
+                    if(sum == 1) {
+                        printf(" %d", i);
+                    }
+                }
+                printf("\n");
+                break;
+            //6. Festival of Laughter
+            // Festival of Laughter: Prints all the numbers between 1 the given number:
+            // and replace with "Smile!" every number that divided by the given smile number
+            // and replace with "Cheer!" every number that divided by the given cheer number
+            // and replace with "Festival!" every number that divided by both of them
+            case 6:
+                int smile, cheer;
+                printf("Enter a smile and cheer number:\n");
+                scanf(" %[^0-9]");
+                scanf("%d", &smile);
+                scanf(" %[^0-9]");
+                scanf("%d", &cheer);
+                printf("The smile is %d.\n", smile);
+                printf("The cheer is %d.\n", cheer);
+                return 0;
                 break;
             /* 7. Exit
              * Case 7: End the program.
@@ -220,19 +284,9 @@ int main() {
                 printf("This option is not available, please try again.\n");
         }
     } while (option != 7); //Repeat everything unless the user chose 7.
-
-    /* Examples:
-    Happy :) : 7, 10
-    Not Happy :( : 5, 9
-    Please notice: the number has to be bigger than 0.
-    */
-
-    // Festival of Laughter: Prints all the numbers between 1 the given number:
-    // and replace with "Smile!" every number that divided by the given smile number
-    // and replace with "Cheer!" every number that divided by the given cheer number
-    // and replace with "Festival!" every number that divided by both of them
     /* Example:
     6, smile: 2, cheer: 3 : 1, Smile!, Cheer!, Smile!, 5, Festival!
     */
+
     return 0;
 }
